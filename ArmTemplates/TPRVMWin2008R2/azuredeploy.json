@@ -6,10 +6,6 @@
       "type": "string",
       "defaultValue": "TPR"
     },
-    "labName": {
-      "type": "string",
-      "defaultValue": "TPR_SIT_2"
-    },
     "size": {
       "type": "string",
       "defaultValue": "Standard_B2s"
@@ -29,15 +25,15 @@
   },
   "variables": {
     "labSubnetName": "LAN",
-    "labVirtualNetworkId": "[resourceId('Microsoft.DevTestLab/labs/virtualnetworks', parameters('labName'), variables('labVirtualNetworkName'))]",
+    "labVirtualNetworkId": "[resourceId('Microsoft.Compute/virtualnetworks', parameters('labName'), variables('labVirtualNetworkName'))]",
     "labVirtualNetworkName": "TPR__SIT__2",
-    "vmId": "[resourceId ('Microsoft.DevTestLab/labs/virtualmachines', parameters('labName'), parameters('newVMName'))]",
+    "vmId": "[resourceId ('Microsoft.Compute/virtualmachines', parameters('labName'), parameters('newVMName'))]",
     "vmName": "[concat(parameters('labName'), '/', parameters('newVMName'))]"
   },
   "resources": [
     {
-      "apiVersion": "2017-04-26-preview",
-      "type": "Microsoft.DevTestLab/labs/virtualmachines",
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Compute/virtualMachines",
       "name": "[variables('vmName')]",
       "location": "[resourceGroup().location]",
       "properties": {
