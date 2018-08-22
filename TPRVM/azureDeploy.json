@@ -1,0 +1,111 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "newVMName": {
+      "type": "string",
+      "defaultValue": "TPR"
+    },
+    "labName": {
+      "type": "string",
+      "defaultValue": "TPR_SIT_2"
+    },
+    "size": {
+      "type": "string",
+      "defaultValue": "Standard_B2s"
+    },
+    "userName": {
+      "type": "string",
+      "defaultValue": "tpr_admin"
+    },
+    "password": {
+      "type": "securestring",
+      "defaultValue": "[[[adminpassword]]"
+    },
+    "availabilitySetName": {
+      "type": "string"
+    },
+    "Join_Active_Directory_(AD)_domain_domainAdminUsername": {
+      "type": "string",
+      "defaultValue": "ecrtpr\\tpr_admin"
+    },
+    "Join_Active_Directory_(AD)_domain_domainAdminPassword": {
+      "type": "securestring",
+      "defaultValue": "[[[adminpassword]]"
+    },
+    "Join_Active_Directory_(AD)_domain_domainToJoin": {
+      "type": "string",
+      "defaultValue": "ecrtpr.org.uk"
+    },
+    "Join_Active_Directory_(AD)_domain_ouPath": {
+      "type": "string",
+      "defaultValue": ""
+    }
+  },
+  "variables": {
+    "labSubnetName": "LAN",
+    "labVirtualNetworkId": "[resourceId('Microsoft.DevTestLab/labs/virtualnetworks', parameters('labName'), variables('labVirtualNetworkName'))]",
+    "labVirtualNetworkName": "TPR__SIT__2",
+    "vmId": "[resourceId ('Microsoft.DevTestLab/labs/virtualmachines', parameters('labName'), parameters('newVMName'))]",
+    "vmName": "[concat(parameters('labName'), '/', parameters('newVMName'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2017-04-26-preview",
+      "type": "Microsoft.DevTestLab/labs/virtualmachines",
+      "name": "[variables('vmName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "labVirtualNetworkId": "[variables('labVirtualNetworkId')]",
+        "notes": "Windows Server 2008 R2 SP1",
+        "galleryImageReference": {
+          "offer": "WindowsServer",
+          "publisher": "MicrosoftWindowsServer",
+          "sku": "2008-R2-SP1",
+          "osType": "Windows",
+          "version": "latest"
+        },
+        "size": "[parameters('size')]",
+        "userName": "[parameters('userName')]",
+        "password": "[parameters('password')]",
+        "isAuthenticationWithSshKey": false,
+        "artifacts": [
+          {
+            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-domain-join-new')]",
+            "parameters": [
+              {
+                "name": "domainAdminUsername",
+                "value": "[parameters('Join_Active_Directory_(AD)_domain_domainAdminUsername')]"
+              },
+              {
+                "name": "domainAdminPassword",
+                "value": "[parameters('Join_Active_Directory_(AD)_domain_domainAdminPassword')]"
+              },
+              {
+                "name": "domainToJoin",
+                "value": "[parameters('Join_Active_Directory_(AD)_domain_domainToJoin')]"
+              },
+              {
+                "name": "ouPath",
+                "value": "[parameters('Join_Active_Directory_(AD)_domain_ouPath')]"
+              }
+            ]
+          }
+        ],
+        "labSubnetName": "[variables('labSubnetName')]",
+        "disallowPublicIpAddress": true,
+        "storageType": "Standard",
+        "allowClaim": false,
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "labVMId": {
+      "type": "string",
+      "value": "[variables('vmId')]"
+    }
+  }
+}
