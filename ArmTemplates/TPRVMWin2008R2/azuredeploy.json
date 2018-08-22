@@ -6,6 +6,10 @@
       "type": "string",
       "defaultValue": "TPR"
     },
+    "labName": {
+      "type": "string",
+      "defaultValue": "TPR_SIT_2"
+    },
     "size": {
       "type": "string",
       "defaultValue": "Standard_B2s"
