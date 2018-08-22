@@ -23,23 +23,8 @@
       "defaultValue": "[[[adminpassword]]"
     },
     "availabilitySetName": {
-      "type": "string"
-    },
-    "Join_Active_Directory_(AD)_domain_domainAdminUsername": {
       "type": "string",
-      "defaultValue": "ecrtpr\\tpr_admin"
-    },
-    "Join_Active_Directory_(AD)_domain_domainAdminPassword": {
-      "type": "securestring",
-      "defaultValue": "[[[adminpassword]]"
-    },
-    "Join_Active_Directory_(AD)_domain_domainToJoin": {
-      "type": "string",
-      "defaultValue": "ecrtpr.org.uk"
-    },
-    "Join_Active_Directory_(AD)_domain_ouPath": {
-      "type": "string",
-      "defaultValue": ""
+      "defaultValue": "CRM"
     }
   },
   "variables": {
@@ -69,29 +54,6 @@
         "userName": "[parameters('userName')]",
         "password": "[parameters('password')]",
         "isAuthenticationWithSshKey": false,
-        "artifacts": [
-          {
-            "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-domain-join-new')]",
-            "parameters": [
-              {
-                "name": "domainAdminUsername",
-                "value": "[parameters('Join_Active_Directory_(AD)_domain_domainAdminUsername')]"
-              },
-              {
-                "name": "domainAdminPassword",
-                "value": "[parameters('Join_Active_Directory_(AD)_domain_domainAdminPassword')]"
-              },
-              {
-                "name": "domainToJoin",
-                "value": "[parameters('Join_Active_Directory_(AD)_domain_domainToJoin')]"
-              },
-              {
-                "name": "ouPath",
-                "value": "[parameters('Join_Active_Directory_(AD)_domain_ouPath')]"
-              }
-            ]
-          }
-        ],
         "labSubnetName": "[variables('labSubnetName')]",
         "disallowPublicIpAddress": true,
         "storageType": "Standard",
@@ -99,7 +61,6 @@
         "availabilitySet": {
           "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
         }
-      }
     }
   ],
   "outputs": {
