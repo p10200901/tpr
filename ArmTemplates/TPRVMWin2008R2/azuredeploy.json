@@ -41,25 +41,27 @@
       "name": "[variables('vmName')]",
       "location": "[resourceGroup().location]",
       "properties": {
-        "labVirtualNetworkId": "[variables('labVirtualNetworkId')]",
-        "notes": "Windows Server 2008 R2 SP1",
-        "galleryImageReference": {
-          "offer": "WindowsServer",
-          "publisher": "MicrosoftWindowsServer",
-          "sku": "2008-R2-SP1",
-          "osType": "Windows",
-          "version": "latest"
-        },
-        "size": "[parameters('size')]",
-        "userName": "[parameters('userName')]",
-        "password": "[parameters('password')]",
-        "isAuthenticationWithSshKey": false,
-        "labSubnetName": "[variables('labSubnetName')]",
-        "disallowPublicIpAddress": true,
-        "storageType": "Standard",
-        "allowClaim": false,
-        "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
+            "labVirtualNetworkId": "[variables('labVirtualNetworkId')]",
+            "notes": "Windows Server 2008 R2 SP1",
+            "galleryImageReference": {
+            "offer": "WindowsServer",
+            "publisher": "MicrosoftWindowsServer",
+            "sku": "2008-R2-SP1",
+            "osType": "Windows",
+            "version": "latest"
+            },
+            "size": "[parameters('size')]",
+            "userName": "[parameters('userName')]",
+            "password": "[parameters('password')]",
+            "isAuthenticationWithSshKey": false,
+            "labSubnetName": "[variables('labSubnetName')]",
+            "disallowPublicIpAddress": true,
+            "storageType": "Standard",
+            "allowClaim": false,
+            "availabilitySet": {
+                "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
+            }
+
         }
     }
   ],
