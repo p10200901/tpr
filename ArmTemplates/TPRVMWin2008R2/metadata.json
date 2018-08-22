@@ -1,0 +1,6 @@
+{
+  "itemDisplayName": "TPR Windows 2008 R2 Image",
+  "githubUsername": "Capita",
+  "description": "TPR Windows 2008 R2 Image",
+  "summary": "This allows you to create a Windows 2008 R2 VM with an availability set and join it to the domain"
+}
