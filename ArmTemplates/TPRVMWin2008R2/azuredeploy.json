@@ -3,37 +3,48 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "northeurope"
         },
         "virtualMachineName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "TPR"
         },
         "virtualMachineSize": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Standard_B2s"
         },
         "adminUsername": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "tpr_admin"
         },
         "virtualNetworkName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "TPR_SIT_2"
         },
         "networkInterfaceName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "TPR"
         },
         "adminPassword": {
-            "type": "securestring"
+            "type": "securestring",
+            "defaultValue": "[[[adminpassword]]"
         },
         "availabilitySetName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "CRM"
         },
         "diagnosticsStorageAccountName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "atprsit29987"
         },
         "diagnosticsStorageAccountId": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "/subscriptions/0a0baa8f-22dc-4fd7-9269-f24c0d64eb4f/resourceGroups/TPR_SIT_2/providers/Microsoft.Storage/storageAccounts/atprsit29987"
         },
         "subnetName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "LAN"
         }
     },
     "variables": {
