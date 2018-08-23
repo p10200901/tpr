@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "virtualMachineName": {
+            "value": "TPR"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B2s"
+        },
+        "adminUsername": {
+            "value": "tpr_admin"
+        },
+        "virtualNetworkName": {
+            "value": "TPR_SIT_2"
+        },
+        "networkInterfaceName": {
+            "value": "tpr922"
+        },
+        "networkSecurityGroupName": {
+            "value": "TPR-nsg"
+        },
+        "adminPassword": {
+            "value": null
+        },
+        "availabilitySetName": {
+            "value": "CRM"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "atprsit29987"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "/subscriptions/0a0baa8f-22dc-4fd7-9269-f24c0d64eb4f/resourceGroups/TPR_SIT_2/providers/Microsoft.Storage/storageAccounts/atprsit29987"
+        },
+        "subnetName": {
+            "value": "LAN"
+        }
+    }
+}
