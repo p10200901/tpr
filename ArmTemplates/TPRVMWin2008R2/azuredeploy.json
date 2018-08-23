@@ -53,6 +53,12 @@
     },
     "resources": [
         {
+          "type": "Microsoft.Compute/availabilitySets",
+          "name": "[parameters('availabilitySetName')]",
+          "apiVersion": "2015-06-15",
+          "location": "[parameters('location')]"
+        },
+        {
             "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2018-04-01",
