@@ -18,10 +18,7 @@
             "value": "TPR_SIT_2"
         },
         "networkInterfaceName": {
-            "value": "tpr922"
-        },
-        "networkSecurityGroupName": {
-            "value": "TPR-nsg"
+            "value": "tpr550"
         },
         "adminPassword": {
             "value": null
